@@ -8,3 +8,12 @@ export const Container = styled.div`
   flex-grow: 0;
   flex-shrink: 0;
 `;
+
+export const InputsContainer = styled.div`
+  width: 50%;
+  margin: 10px auto;
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: space-around;
+`;
