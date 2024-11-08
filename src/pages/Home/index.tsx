@@ -2,21 +2,35 @@ import { Container } from './styles.ts';
 import BooksTable from '../../components/Table';
 import { useEffect, useState } from 'react';
 import { getVolumes } from '../../services/GoogleBooksService.ts';
+import { APIBook } from '../../types/apiTypes.ts';
+import { Book } from '../../types/commonTypes.ts';
 
 export default function Home() {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
-    function getBooks() {
-      const data = getVolumes({ query: 'Dante', searchLimit: 20 });
+    async function getBooks() {
+      const response = await getVolumes({ query: 'Dante', searchLimit: 20 });
+      if (response !== undefined) {
+        const data: Book[] = response.items.map((item: APIBook) => {
+          return {
+            id: item.id,
+            title: item.volumeInfo.title,
+            author: item.volumeInfo.authors.join(', '),
+            categories: item.volumeInfo.categories ? item.volumeInfo.categories.join(', ') : 'Indisponivel',
+            avgRating: item.volumeInfo.averageRating ?? 'Indisponível',
+          };
+        });
+        setBooks(data);
+      }
     }
 
-    console.log(getVolumes({ query: 'Dante', searchLimit: 20 }));
+    getBooks();
   }, []);
 
   return (
     <Container>
-      <BooksTable></BooksTable>
+      <BooksTable books={books} />
     </Container>
   );
 }
