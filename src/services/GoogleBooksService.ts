@@ -9,8 +9,8 @@ export async function getVolumes({
 }: {
   query: string;
   searchLimit?: number;
-  orderBy: string;
-}) {
+  orderBy?: string;
+}): Promise<GoogleAPIResponse | undefined> {
   const queryParams = new URLSearchParams({
     key: import.meta.env.VITE_API_KEY,
     q: query.replace(' ', '+'),
