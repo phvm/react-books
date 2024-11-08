@@ -1,4 +1,4 @@
-export interface Book {
+export interface APIBook {
   kind: string;
   id: string;
   etag: string;
@@ -10,14 +10,14 @@ export interface Book {
     publishedDate: string;
     description: string;
     pageCount: number;
-    categories: string[];
-    averageRating: number;
+    categories: string[] | undefined;
+    averageRating: number | undefined;
     ratingCount: number;
   };
 }
 
 export interface GoogleAPIResponse {
   kind: string;
-  items: Book[];
+  items: APIBook[];
   totalItems: number;
 }
