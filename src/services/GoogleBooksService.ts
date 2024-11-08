@@ -1,3 +1,5 @@
+import { GoogleAPIResponse } from '../types/apiTypes.ts';
+
 const apiURL: string = 'https://www.googleapis.com/books/v1/volumes?';
 
 export async function getVolumes({
@@ -17,7 +19,7 @@ export async function getVolumes({
   });
   try {
     const response = await fetch(apiURL + queryParams);
-    return await response.json();
+    return (await response.json()) as GoogleAPIResponse;
   } catch (error) {
     console.error(error);
   }
