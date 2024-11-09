@@ -27,7 +27,7 @@ export default function Home() {
           return {
             id: item.id,
             title: item.volumeInfo.title,
-            author: item.volumeInfo.authors.join(', '),
+            author: item.volumeInfo.authors ? item.volumeInfo.authors.join(', ') : 'Indisponivel',
             categories: item.volumeInfo.categories ? item.volumeInfo.categories.join(', ') : 'Indisponivel',
             avgRating: item.volumeInfo.averageRating ?? 'Indisponível',
           };
