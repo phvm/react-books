@@ -21,7 +21,7 @@ export default function Home() {
 
   useEffect(() => {
     async function getBooks() {
-      const response = await getVolumes({ query: 'Dante', searchLimit: 20 });
+      const response = await getVolumes({ query: ' ', searchLimit: 20 });
       if (response !== undefined) {
         const data: Book[] = response.items.map((item: APIBook) => {
           return {
