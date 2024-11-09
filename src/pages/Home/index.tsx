@@ -1,7 +1,7 @@
 import { Container, InputsContainer } from './styles.ts';
 import BooksTable from '../../components/Table';
 import { useEffect, useState } from 'react';
-import { getVolumes } from '../../services/GoogleBooksService.ts';
+import { getByAuthorAndTitle, getVolumes } from '../../services/GoogleBooksService.ts';
 import { APIBook } from '../../types/apiTypes.ts';
 import { Book } from '../../types/commonTypes.ts';
 import SearchFilter from '../../components/SearchFilter';
@@ -13,10 +13,28 @@ export default function Home() {
 
   function onTitleChange(title: string): void {
     setTitle(title);
+    getBookByAuthorAndTitle(author, title);
   }
 
   function onAuthorChange(author: string): void {
     setAuthor(author);
+    getBookByAuthorAndTitle(author, title);
+  }
+
+  async function getBookByAuthorAndTitle(author: string, title: string): Promise<void> {
+    const response = await getByAuthorAndTitle({ author, title });
+    if (response) {
+      const data: Book[] = response.items.map((item) => {
+        return {
+          id: item.id,
+          title: item.volumeInfo.title,
+          author: item.volumeInfo.authors ? item.volumeInfo.authors.join(', ') : 'Indisponivel',
+          categories: item.volumeInfo.categories ? item.volumeInfo.categories.join(', ') : 'Indisponivel',
+          avgRating: item.volumeInfo.averageRating ?? 'Indisponível',
+        };
+      });
+      setBooks(data);
+    }
   }
 
   useEffect(() => {
