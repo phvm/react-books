@@ -29,7 +29,7 @@ export async function getByAuthorAndTitle({
   title = '',
   author = '',
   searchLimit = 10,
-  orderBy = 'newest',
+  orderBy = 'relevance',
 }: {
   title?: string;
   author?: string;
