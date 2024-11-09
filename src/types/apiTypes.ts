@@ -11,7 +11,7 @@ export interface APIBook {
     description: string;
     pageCount: number;
     categories: string[] | undefined;
-    averageRating: number | undefined;
+    averageRating: number;
     ratingCount: number;
   };
 }
