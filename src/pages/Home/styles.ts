@@ -10,7 +10,8 @@ export const Container = styled.div`
 `;
 
 export const InputsContainer = styled.div`
-  width: 50%;
+  width: 90%;
+  max-width: 800px;
   margin: 10px auto;
   display: flex;
   flex-grow: 0;
