@@ -5,3 +5,8 @@ export interface Book {
   categories: string | 'Indisponivel';
   avgRating: number | 'Indisponível';
 }
+
+export interface CategoryRatings {
+  category: string;
+  ratings: number[];
+}
