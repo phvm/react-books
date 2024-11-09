@@ -5,4 +5,5 @@ export const TableContainer = styled(Paper)`
   width: 90%;
   margin: 0 auto;
   max-width: 1000px;
+  max-height: 70%;
 `;
