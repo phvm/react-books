@@ -1,7 +1,12 @@
 export interface Book {
-  id: string;
+  id: number;
   title: string;
   author: string;
   categories: string | 'Indisponivel';
   avgRating: number | 'Indisponível';
+}
+
+export interface CategoryRatings {
+  category: string;
+  rating: number;
 }
