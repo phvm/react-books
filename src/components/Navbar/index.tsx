@@ -8,7 +8,7 @@ export default function Navbar({ pages }: NavbarProps) {
   return (
     <NavbarContainer>
       {pages.map((page) => (
-        <NavbarItem size="medium" href={`#${page.link}`} variant="text">
+        <NavbarItem size="medium" href={`${page.link}`} variant="text">
           {page.title}
         </NavbarItem>
       ))}
