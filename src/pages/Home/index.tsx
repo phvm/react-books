@@ -27,13 +27,13 @@ export default function Home() {
   async function getBookByAuthorAndTitle(author: string, title: string): Promise<void> {
     const response = await getByAuthorAndTitle({ author, title, searchLimit: 40 });
     if (response) {
-      const data: Book[] = response.items.map((item) => {
+      const data: Book[] = response.items.map((item, index) => {
         return {
-          id: item.id,
-          title: item.volumeInfo.title,
-          author: item.volumeInfo.authors ? item.volumeInfo.authors.join(', ') : 'Indisponivel',
-          categories: item.volumeInfo?.categories?.join() ?? 'Indisponivel',
-          avgRating: item.volumeInfo.averageRating ?? 'Indisponível',
+          id: index,
+          title: item.title,
+          author: item.authors ? item.authors.join(', ') : 'Indisponivel',
+          categories: item?.categories?.join() ?? 'Indisponivel',
+          avgRating: item.averageRating ?? 'Indisponível',
         };
       });
       setBooks(data);
@@ -73,13 +73,13 @@ export default function Home() {
     async function getBooks() {
       const response = await getVolumes({ query: ' ', searchLimit: 20 });
       if (response !== undefined) {
-        const data: Book[] = response.items.map((item: APIBook) => {
+        const data: Book[] = response.items.map((item: APIBook, index) => {
           return {
-            id: item.id,
-            title: item.volumeInfo.title,
-            author: item.volumeInfo.authors ? item.volumeInfo.authors.join(', ') : 'Indisponivel',
-            categories: item.volumeInfo.categories ? item.volumeInfo.categories.join(', ') : 'Indisponivel',
-            avgRating: item.volumeInfo.averageRating ?? 'Indisponível',
+            id: index,
+            title: item.title,
+            author: item.authors ? item.authors.join(', ') : 'Indisponivel',
+            categories: item.categories ? item.categories.join(', ') : 'Indisponivel',
+            avgRating: item.averageRating ?? 'Indisponível',
           };
         });
         setBooks(data);

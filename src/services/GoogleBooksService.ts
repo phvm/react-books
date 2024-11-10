@@ -19,6 +19,7 @@ export async function getVolumes({
     maxResults: searchLimit.toString(),
     orderBy: orderBy,
     startIndex: startIndex.toString(),
+    fields: 'items(volumeInfo(title, authors, categories, avgRating))',
   });
   try {
     const response = await fetch(apiURL + queryParams);
@@ -47,6 +48,7 @@ export async function getByAuthorAndTitle({
     maxResults: searchLimit.toString(),
     orderBy: orderBy,
     startIndex: startIndex.toString(),
+    fields: 'items(volumeInfo(title, authors, categories, avgRating))',
   });
   try {
     const response = await fetch(apiURL + queryParams);
@@ -73,6 +75,7 @@ export async function getBooksByCategory({
     orderBy,
     key: import.meta.env.VITE_API_KEY,
     startIndex: startIndex.toString(),
+    fields: 'items(volumeInfo(title, authors, categories, averageRating, publishedDate))',
   });
   try {
     const response = await fetch(apiURL + queryParams);
