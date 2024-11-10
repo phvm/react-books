@@ -1,11 +1,11 @@
 import { Container, InputsContainer } from './styles.ts';
 import BooksTable from '../../components/Table';
 import { useEffect, useState } from 'react';
-import { getBooksByCategory, getByAuthorAndTitle, getVolumes } from '../../services/GoogleBooksService.ts';
+import { getByAuthorAndTitle, getVolumes } from '../../services/GoogleBooksService.ts';
 import { APIBook } from '../../types/apiTypes.ts';
 import { Book, CategoryRatings } from '../../types/commonTypes.ts';
 import SearchFilter from '../../components/SearchFilter';
-import CategoriesChart from '../../components/CategoriesChart';
+import { deferFunction } from '../../utils/deferFunction.ts';
 
 export default function Home() {
   const [books, setBooks] = useState<Book[]>([]);
@@ -16,12 +16,12 @@ export default function Home() {
 
   function onTitleChange(title: string): void {
     setTitle(title);
-    getBookByAuthorAndTitle(author, title);
+    deferFunction(() => getBookByAuthorAndTitle(author, title), 2000);
   }
 
   function onAuthorChange(author: string): void {
     setAuthor(author);
-    getBookByAuthorAndTitle(author, title);
+    deferFunction(() => getBookByAuthorAndTitle(author, title), 2000);
   }
 
   async function getBookByAuthorAndTitle(author: string, title: string): Promise<void> {
