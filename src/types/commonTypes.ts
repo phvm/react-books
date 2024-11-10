@@ -8,5 +8,5 @@ export interface Book {
 
 export interface CategoryRatings {
   category: string;
-  ratings: number[];
+  rating: number;
 }

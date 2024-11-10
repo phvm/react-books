@@ -1,9 +1,11 @@
 export interface APIBook {
-  title: string;
-  authors: string[];
-  categories: string[] | undefined;
-  averageRating: number;
-  publishedDate?: string;
+  volumeInfo: {
+    title: string;
+    authors: string[];
+    categories: string[];
+    averageRating: number;
+    publishedDate?: string;
+  };
 }
 
 export interface GoogleAPIResponse {

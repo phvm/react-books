@@ -26,14 +26,14 @@ export default function Home() {
 
   async function getBookByAuthorAndTitle(author: string, title: string): Promise<void> {
     const response = await getByAuthorAndTitle({ author, title, searchLimit: 40 });
-    if (response) {
+    if (response !== undefined) {
       const data: Book[] = response.items.map((item, index) => {
         return {
           id: index,
-          title: item.title,
-          author: item.authors ? item.authors.join(', ') : 'Indisponivel',
-          categories: item?.categories?.join() ?? 'Indisponivel',
-          avgRating: item.averageRating ?? 'Indisponível',
+          title: item.volumeInfo.title,
+          author: item.volumeInfo.authors ? item.volumeInfo.authors.join(', ') : 'Indisponivel',
+          categories: item.volumeInfo.categories ? item.volumeInfo.categories.join(', ') : 'Indisponivel',
+          avgRating: item.volumeInfo.averageRating ?? 'Indisponível',
         };
       });
       setBooks(data);
@@ -43,25 +43,17 @@ export default function Home() {
   useEffect(() => {
     async function getRatingsByCategories(categories: string[]) {
       for (const category of categories) {
-        const rates: number[] = [0, 0, 0, 0, 0, 0];
-        const response = await getBooksByCategory({ category: category });
+        const response = await getBooksByCategory({ category: category, orderBy: 'newest' });
         if (response !== undefined) {
-          response.items
+          const rates = response.items
             .filter((item) => !!item.volumeInfo.averageRating)
-            .forEach((ratedItem) => {
-              rates[Math.round(ratedItem.volumeInfo.averageRating)] += 1;
+            .map((item) => {
+              return {
+                category: category,
+                rating: item.volumeInfo.averageRating,
+              };
             });
-          setCategoryRatings((prevState) =>
-            prevState.some((item) => item.category === category)
-              ? [...prevState]
-              : [
-                  ...prevState,
-                  {
-                    category: category,
-                    ratings: rates,
-                  },
-                ],
-          );
+          setCategoryRatings((prevState) => [...prevState].concat(rates));
         }
       }
     }
@@ -76,10 +68,10 @@ export default function Home() {
         const data: Book[] = response.items.map((item: APIBook, index) => {
           return {
             id: index,
-            title: item.title,
-            author: item.authors ? item.authors.join(', ') : 'Indisponivel',
-            categories: item.categories ? item.categories.join(', ') : 'Indisponivel',
-            avgRating: item.averageRating ?? 'Indisponível',
+            title: item.volumeInfo.title,
+            author: item.volumeInfo.authors ? item.volumeInfo.authors.join(', ') : 'Indisponivel',
+            categories: item.volumeInfo.categories ? item.volumeInfo.categories.join(', ') : 'Indisponivel',
+            avgRating: item.volumeInfo.averageRating ?? 'Indisponível',
           };
         });
         setBooks(data);
