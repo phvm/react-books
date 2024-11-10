@@ -1,11 +1,13 @@
 import { Container, InputsContainer } from './styles.ts';
 import BooksTable from '../../components/Table';
 import { useEffect, useState } from 'react';
-import { getByAuthorAndTitle, getVolumes } from '../../services/GoogleBooksService.ts';
+import { getBooksByCategory, getByAuthorAndTitle, getVolumes } from '../../services/GoogleBooksService.ts';
 import { APIBook } from '../../types/apiTypes.ts';
 import { Book, CategoryRatings } from '../../types/commonTypes.ts';
 import SearchFilter from '../../components/SearchFilter';
+import RatingsTimeline from '../../components/RatingsTimeline';
 import { deferFunction } from '../../utils/deferFunction.ts';
+import CategoriesChart from '../../components/CategoriesChart';
 
 export default function Home() {
   const [books, setBooks] = useState<Book[]>([]);
@@ -98,7 +100,8 @@ export default function Home() {
         />
       </InputsContainer>
       <BooksTable books={books} />
-      <CategoriesChart ratingsData={categoryRatings} />
+      <CategoriesChart categories={exampleCategories} ratingsData={categoryRatings} />
+      <RatingsTimeline categories={exampleCategories} ratings={categoryRatings} />
     </Container>
   );
 }
