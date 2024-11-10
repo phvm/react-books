@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { RouterLinks } from './constants';
 import Home from './pages/Home';
-import Dashboard from './pages/dashboard';
+import Dashboard from './pages/Dashboard';
 
 const Router = createBrowserRouter([
   {
