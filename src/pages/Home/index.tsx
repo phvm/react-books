@@ -16,12 +16,12 @@ export default function Home() {
 
   function onTitleChange(title: string): void {
     setTitle(title);
-    deferFunction(() => getBookByAuthorAndTitle(author, title), 2000);
+    deferFunction(() => getBookByAuthorAndTitle(author, title), 1000);
   }
 
   function onAuthorChange(author: string): void {
     setAuthor(author);
-    deferFunction(() => getBookByAuthorAndTitle(author, title), 2000);
+    deferFunction(() => getBookByAuthorAndTitle(author, title), 1000);
   }
 
   async function getBookByAuthorAndTitle(author: string, title: string): Promise<void> {
