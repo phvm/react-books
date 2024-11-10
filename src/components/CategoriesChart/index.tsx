@@ -4,17 +4,29 @@ import { CategoryRatings } from '../../types/commonTypes.ts';
 
 interface CategoriesChartProps {
   ratingsData: CategoryRatings[];
+  categories: string[];
 }
 
-export default function CategoriesChart({ ratingsData }: CategoriesChartProps) {
-  const chartData = ratingsData.map((ratingData) => {
+export default function CategoriesChart({ ratingsData, categories }: CategoriesChartProps) {
+  const data: { category: string; ratings: number[] }[] = categories.map((category) => {
+    const rates: number[] = [0, 0, 0, 0, 0, 0];
+    ratingsData.forEach((ratings) => {
+      if (category === ratings.category) {
+        rates[Math.round(ratings.rating)] += 1;
+      }
+    });
     return {
-      data: ratingData.ratings,
+      category: category,
+      ratings: rates,
+    };
+  });
+  const chartData: { label: string; data: number[] }[] = data.map((ratingData) => {
+    return {
       label: ratingData.category,
+      data: ratingData.ratings,
     };
   });
 
-  console.log(chartData);
   return (
     <ChartContainer>
       <BarChart
