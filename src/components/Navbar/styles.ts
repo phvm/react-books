@@ -28,4 +28,6 @@ export const NavigationsContainer = styled.div`
   flex-direction: row;
 `;
 
-export const ThemeModeContainer = styled(Button)``;
+export const ThemeModeContainer = styled(Button)`
+  transition: all 0.3s;
+`;
