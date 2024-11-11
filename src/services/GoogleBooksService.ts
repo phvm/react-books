@@ -75,7 +75,7 @@ export async function getBooksByCategory({
     orderBy,
     key: import.meta.env.VITE_API_KEY,
     startIndex: startIndex.toString(),
-    fields: 'items(volumeInfo(title, authors, categories, averageRating, publishedDate))',
+    fields: 'items(volumeInfo(title, authors, categories, averageRating, publishedDate, pageCount))',
   });
   try {
     const response = await fetch(apiURL + queryParams);
