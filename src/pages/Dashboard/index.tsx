@@ -6,9 +6,10 @@ import { getBooksByCategory } from '../../services/GoogleBooksService.ts';
 import { CategoryRatings } from '../../types/commonTypes.ts';
 import { APIBook } from '../../types/apiTypes.ts';
 
+const exampleCategories = ['fiction', 'romance', 'medical', 'engineering', 'cooking', 'comedy'];
+
 export default function Dashboard() {
   const [categoryRatings, setCategoryRatings] = useState<CategoryRatings[]>([]);
-  const exampleCategories = ['fiction', 'romance', 'medical', 'engineering', 'cooking', 'comedy'];
 
   useEffect(() => {
     async function getRatingsByCategories(categories: string[]) {
@@ -33,10 +34,10 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <>
+    <main>
       <CategoriesChart categories={exampleCategories} ratingsData={categoryRatings} />
       <AveragePagesChart categories={exampleCategories} ratingsData={categoryRatings} />{' '}
       <RatingsTimeline categories={exampleCategories} ratings={categoryRatings} />
-    </>
+    </main>
   );
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Button } from '@mui/material';
 
-export const NavbarContainer = styled.div`
+export const NavbarContainer = styled.header`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -23,7 +23,7 @@ export const NavbarItem = styled(Button)`
   font-size: 0.9rem;
 `;
 
-export const NavigationsContainer = styled.div`
+export const NavigationsContainer = styled.nav`
   display: flex;
   flex-direction: row;
 `;
