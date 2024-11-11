@@ -12,7 +12,7 @@ export default function Navbar({ pages }: NavbarProps) {
   const toggleColorMode = () => {
     setMode(mode === 'light' ? 'dark' : 'light');
   };
-  console.log('mode 2', mode);
+
   return (
     <NavbarContainer style={{ backgroundColor: mode === 'light' ? '#ffffff' : '#181818' }}>
       <NavigationsContainer
