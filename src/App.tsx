@@ -1,19 +1,19 @@
 import { RouterProvider } from 'react-router-dom';
 import Router from './router';
+import { CssBaseline } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
+import theme from './theme';
 import Navbar from './components/Navbar';
-import { RouterLinks } from './constants.ts';
-
-const navbarLinks = [
-  { title: 'Home', link: RouterLinks.home },
-  { title: 'Dashboard', link: RouterLinks.dashboard },
-];
+import { navbarLinks } from './constants.ts';
 
 function App() {
   return (
-    <>
-      <Navbar pages={navbarLinks} />
-      <RouterProvider router={Router}></RouterProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
+        <Navbar pages={navbarLinks}></Navbar>
+        <RouterProvider router={Router}></RouterProvider>
+      </CssBaseline>
+    </ThemeProvider>
   );
 }
 
