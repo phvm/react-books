@@ -1,6 +1,7 @@
 import { LineChart } from '@mui/x-charts';
 import { GraphContainer } from './styles.ts';
 import { CategoryRatings } from '../../types/commonTypes.ts';
+import { firstCharToUppercase } from '../../utils/stringUtils.ts';
 
 interface RatingsTimelinePros {
   ratings: CategoryRatings[];
@@ -16,7 +17,7 @@ export default function RatingsTimeline({ ratings, categories }: RatingsTimeline
       return 0;
     });
     return {
-      label: category,
+      label: firstCharToUppercase(category),
       data: categoryRates,
     };
   });

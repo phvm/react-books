@@ -5,5 +5,5 @@ export const GraphContainer = styled.div`
   height: 60dvh;
   max-width: 800px;
   min-width: 200px;
-  margin: 0 auto;
+  margin: 20px auto;
 `;

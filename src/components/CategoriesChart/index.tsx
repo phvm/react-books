@@ -1,6 +1,7 @@
 import { BarChart } from '@mui/x-charts';
 import { ChartContainer } from './styles.ts';
 import { CategoryRatings } from '../../types/commonTypes.ts';
+import { firstCharToUppercase } from '../../utils/stringUtils.ts';
 
 interface CategoriesChartProps {
   ratingsData: CategoryRatings[];
@@ -22,7 +23,7 @@ export default function CategoriesChart({ ratingsData, categories }: CategoriesC
   });
   const chartData: { label: string; data: number[] }[] = data.map((ratingData) => {
     return {
-      label: ratingData.category,
+      label: firstCharToUppercase(ratingData.category),
       data: ratingData.ratings,
     };
   });

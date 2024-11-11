@@ -5,6 +5,7 @@ export interface APIBook {
     categories: string[];
     averageRating: number;
     publishedDate?: string;
+    pageCount: number;
   };
 }
 

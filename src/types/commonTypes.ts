@@ -9,4 +9,5 @@ export interface Book {
 export interface CategoryRatings {
   category: string;
   rating: number;
+  pageCount: number;
 }
