@@ -62,19 +62,21 @@ export default function Home() {
     <Container>
       <InputsContainer>
         <SearchFilter
-          placeholder="Título"
+          aria-label="Book title search"
+          placeholder="Title"
           value={title}
-          helperText="Inserir o título do livro"
+          helperText="Search for a book title"
           onChange={onTitleChange}
         />
         <SearchFilter
-          placeholder="Autor"
+          aria-label="Book author search"
+          placeholder="Author"
           value={author}
           onChange={onAuthorChange}
-          helperText="Inserir o autor do livro"
+          helperText="Search for a book author"
         />
       </InputsContainer>
-      <BooksTable books={books} />
+      <BooksTable aria-label={'Books list with titles, categories, authors and ratings'} books={books} />
     </Container>
   );
 }

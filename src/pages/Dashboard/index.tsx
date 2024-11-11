@@ -6,9 +6,10 @@ import { getBooksByCategory } from '../../services/GoogleBooksService.ts';
 import { CategoryRatings } from '../../types/commonTypes.ts';
 import { APIBook } from '../../types/apiTypes.ts';
 
+const exampleCategories = ['fiction', 'romance', 'medical', 'engineering', 'cooking', 'comedy'];
+
 export default function Dashboard() {
   const [categoryRatings, setCategoryRatings] = useState<CategoryRatings[]>([]);
-  const exampleCategories = ['fiction', 'romance', 'medical', 'engineering', 'cooking', 'comedy'];
 
   useEffect(() => {
     async function getRatingsByCategories(categories: string[]) {
@@ -33,10 +34,25 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <>
-      <CategoriesChart categories={exampleCategories} ratingsData={categoryRatings} />
-      <AveragePagesChart categories={exampleCategories} ratingsData={categoryRatings} />{' '}
-      <RatingsTimeline categories={exampleCategories} ratings={categoryRatings} />
-    </>
+    <main>
+      <CategoriesChart
+        aria-label="Book ratings distribution by categories"
+        aria-description="Chart showing how books in different categories are rated on average, from 1 to 5 stars"
+        categories={exampleCategories}
+        ratingsData={categoryRatings}
+      />
+      <AveragePagesChart
+        aria-label="Book average pages by categories"
+        aria-description="Chart showing how many average pages books in different categories have"
+        categories={exampleCategories}
+        ratingsData={categoryRatings}
+      />
+      <RatingsTimeline
+        aria-label="Book ratings timeline by categories"
+        aria-description="Chart showing the timeline of books ratings by categories over the time"
+        categories={exampleCategories}
+        ratings={categoryRatings}
+      />
+    </main>
   );
 }

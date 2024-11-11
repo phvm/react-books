@@ -16,6 +16,8 @@ export default function SearchFilter({ placeholder, value, onChange, helperText 
       whileInView={{ scale: 1, opacity: 1 }}
       viewport={{ once: true }}>
       <TextField
+        type="search"
+        role="searchbox"
         component={motion.div}
         label={placeholder}
         value={value}
