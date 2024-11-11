@@ -23,7 +23,7 @@ export default function Navbar({ pages }: NavbarProps) {
         ))}
       </NavigationsContainer>
 
-      <ThemeModeContainer onClick={() => toggleColorMode()}>
+      <ThemeModeContainer size="small" onClick={() => toggleColorMode()}>
         {mode === 'light' ? <LightModeIcon /> : <NightlightIcon />}
       </ThemeModeContainer>
     </NavbarContainer>

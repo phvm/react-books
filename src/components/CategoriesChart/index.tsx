@@ -2,6 +2,7 @@ import { BarChart } from '@mui/x-charts';
 import { ChartContainer } from './styles.ts';
 import { CategoryRatings } from '../../types/commonTypes.ts';
 import { firstCharToUppercase } from '../../utils/stringUtils.ts';
+import { motion } from 'framer-motion';
 
 interface CategoriesChartProps {
   ratingsData: CategoryRatings[];
@@ -29,7 +30,14 @@ export default function CategoriesChart({ ratingsData, categories }: CategoriesC
   });
 
   return (
-    <ChartContainer>
+    <ChartContainer
+      as={motion.div}
+      transition={{ ease: 'linear', duration: 0.5 }}
+      whileHover={{ scale: 1.05, transition: { duration: 0.4 } }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}>
       <BarChart
         yAxis={[{ label: 'N° de Avaliações' }]}
         xAxis={[{ scaleType: 'band', data: [0, 1, 2, 3, 4, 5], label: 'Avaliação' }]}

@@ -2,6 +2,7 @@ import { LineChart } from '@mui/x-charts';
 import { GraphContainer } from './styles.ts';
 import { CategoryRatings } from '../../types/commonTypes.ts';
 import { firstCharToUppercase } from '../../utils/stringUtils.ts';
+import { motion } from 'framer-motion';
 
 interface RatingsTimelinePros {
   ratings: CategoryRatings[];
@@ -22,7 +23,14 @@ export default function RatingsTimeline({ ratings, categories }: RatingsTimeline
     };
   });
   return (
-    <GraphContainer>
+    <GraphContainer
+      transition={{ ease: 'linear', duration: 0.7 }}
+      as={motion.div}
+      whileHover={{ scale: 1.05, transition: { ease: 'easeIn', duration: 0.2 } }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}>
       <LineChart
         series={chartData}
         grid={{ vertical: true, horizontal: true }}

@@ -1,6 +1,7 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Book } from '../../types/commonTypes.ts';
 import { TableContainer } from './styles.ts';
+import { motion } from 'framer-motion';
 
 interface BooksTableProps {
   books: Book[];
@@ -45,7 +46,12 @@ const paginationModel = { page: 0, pageSize: 5 };
 
 export default function BooksTable({ books }: BooksTableProps) {
   return (
-    <TableContainer elevation={2}>
+    <TableContainer
+      as={motion.div}
+      transition={{ ease: 'easeInOut', duration: 0.6 }}
+      initial={{ scale: 0.6, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      elevation={2}>
       <DataGrid
         columns={columns}
         rows={books}
