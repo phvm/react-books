@@ -53,6 +53,7 @@ export default function BooksTable({ books }: BooksTableProps) {
       whileInView={{ scale: 1, opacity: 1 }}
       elevation={2}>
       <DataGrid
+        aria-label="table"
         columns={columns}
         rows={books}
         pageSizeOptions={[5, 10, 15, 20]}

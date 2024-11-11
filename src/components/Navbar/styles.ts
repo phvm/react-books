@@ -30,4 +30,5 @@ export const NavigationsContainer = styled.nav`
 
 export const ThemeModeContainer = styled(Button)`
   transition: all 0.3s;
+  background-color: transparent;
 `;

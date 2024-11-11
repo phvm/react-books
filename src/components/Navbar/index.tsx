@@ -15,16 +15,33 @@ export default function Navbar({ pages }: NavbarProps) {
   console.log('mode 2', mode);
   return (
     <NavbarContainer style={{ backgroundColor: mode === 'light' ? '#ffffff' : '#181818' }}>
-      <NavigationsContainer>
+      <NavigationsContainer
+        role="navigation"
+        aria-label="Main site navigation"
+        aria-description="Navigation links to other pages">
         {pages.map((page) => (
-          <NavbarItem key={page.title} size="medium" href={`${page.link}`} variant="text">
+          <NavbarItem
+            aria-description={`Navigation link to navigate to ${page.title} page`}
+            aria-label={`${page.title} navigation`}
+            role="menuitem"
+            type="button"
+            key={page.title}
+            size="medium"
+            href={`${page.link}`}
+            variant="text">
             {page.title}
           </NavbarItem>
         ))}
       </NavigationsContainer>
 
-      <ThemeModeContainer size="small" onClick={() => toggleColorMode()}>
-        {mode === 'light' ? <LightModeIcon /> : <NightlightIcon />}
+      <ThemeModeContainer
+        tabIndex={0}
+        aria-label={`Switch to ${mode === 'light' ? 'dark' : 'light'} theme`}
+        disableTouchRipple={true}
+        type="button"
+        size="small"
+        onClick={() => toggleColorMode()}>
+        {mode === 'light' ? <LightModeIcon aria-hidden="true" /> : <NightlightIcon aria-hidden="true" />}
       </ThemeModeContainer>
     </NavbarContainer>
   );
