@@ -10,8 +10,9 @@ interface RatingsTimelinePros {
 }
 
 export default function RatingsTimeline({ ratings, categories }: RatingsTimelinePros) {
+  const ratedVolume = ratings.filter((item): boolean => !!item.rating);
   const chartData: { label: string; data: number[] }[] = categories.map((category) => {
-    const categoryRates: number[] = ratings.reverse().map((rating) => {
+    const categoryRates: number[] = ratedVolume.reverse().map((rating) => {
       if (category === rating.category) {
         return rating.rating;
       }

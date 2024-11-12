@@ -10,9 +10,10 @@ interface CategoriesChartProps {
 }
 
 export default function CategoriesChart({ ratingsData, categories }: CategoriesChartProps) {
+  const ratedVolume = ratingsData.filter((item): boolean => !!item.rating);
   const data: { category: string; ratings: number[] }[] = categories.map((category) => {
     const rates: number[] = [0, 0, 0, 0, 0, 0];
-    ratingsData.forEach((ratings) => {
+    ratedVolume.forEach((ratings) => {
       if (category === ratings.category) {
         rates[Math.round(ratings.rating)] += 1;
       }

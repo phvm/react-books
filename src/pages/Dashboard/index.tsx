@@ -15,16 +15,14 @@ export default function Dashboard() {
     async function getRatingsByCategories(categories: string[]) {
       for (const category of categories) {
         const response = await getBooksByCategory({ category: category, orderBy: 'relevance' });
-        if (response !== undefined) {
-          const rates: CategoryRatings[] = response.items
-            .filter((item: APIBook): boolean => !!item.volumeInfo.averageRating)
-            .map((item: APIBook): CategoryRatings => {
-              return {
-                category: category,
-                rating: item.volumeInfo.averageRating,
-                pageCount: item.volumeInfo.pageCount,
-              };
-            });
+        if (response !== undefined && response.items !== undefined) {
+          const rates: CategoryRatings[] = response.items.map((item: APIBook): CategoryRatings => {
+            return {
+              category: category,
+              rating: item.volumeInfo.averageRating,
+              pageCount: item.volumeInfo.pageCount,
+            };
+          });
           setCategoryRatings((prevState) => [...prevState].concat(rates));
         }
       }
