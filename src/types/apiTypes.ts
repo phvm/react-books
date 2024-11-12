@@ -4,7 +4,7 @@ export interface APIBook {
     authors: string[];
     categories: string[];
     averageRating: number;
-    publishedDate?: string;
+    publishedDate: Date;
     pageCount: number;
   };
 }

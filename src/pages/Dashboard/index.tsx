@@ -21,6 +21,7 @@ export default function Dashboard() {
               category: category,
               rating: item.volumeInfo.averageRating,
               pageCount: item.volumeInfo.pageCount,
+              publishedDate: item.volumeInfo.publishedDate,
             };
           });
           setCategoryRatings((prevState) => [...prevState].concat(rates));

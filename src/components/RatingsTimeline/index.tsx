@@ -10,19 +10,29 @@ interface RatingsTimelinePros {
 }
 
 export default function RatingsTimeline({ ratings, categories }: RatingsTimelinePros) {
-  const ratedVolume = ratings.filter((item): boolean => !!item.rating);
-  const chartData: { label: string; data: number[] }[] = categories.map((category) => {
-    const categoryRates: number[] = ratedVolume.reverse().map((rating) => {
-      if (category === rating.category) {
-        return rating.rating;
-      }
-      return 0;
+  const ratedVolume = ratings
+    .filter((item): boolean => !!item.rating)
+    .sort((book1, book2) => {
+      const year1 = new Date(book1.publishedDate).getFullYear();
+      const year2 = new Date(book2.publishedDate).getFullYear();
+      return year1 - year2;
     });
+
+  const chartData: { label: string; data: number[] }[] = categories.map((category) => {
+    const categoryRates: number[] = ratedVolume
+      .map((rating) => {
+        if (category === rating.category) {
+          return rating.rating;
+        }
+        return 0;
+      })
+      .filter((item) => item !== 0);
     return {
       label: firstCharToUppercase(category),
       data: categoryRates,
     };
   });
+
   return (
     <GraphContainer
       transition={{ ease: 'linear', duration: 0.7 }}
