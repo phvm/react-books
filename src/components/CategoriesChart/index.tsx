@@ -1,5 +1,5 @@
 import { BarChart } from '@mui/x-charts';
-import { ChartContainer } from './styles.ts';
+import { ChartContainer, ChartTitle } from './styles.ts';
 import { CategoryRatings } from '../../types/commonTypes.ts';
 import { firstCharToUppercase } from '../../utils/stringUtils.ts';
 import { motion } from 'framer-motion';
@@ -39,9 +39,10 @@ export default function CategoriesChart({ ratingsData, categories }: CategoriesC
       exit={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}>
+      <ChartTitle>Ratings distribution per category</ChartTitle>
       <BarChart
-        yAxis={[{ label: 'N° de Avaliações' }]}
-        xAxis={[{ scaleType: 'band', data: [0, 1, 2, 3, 4, 5], label: 'Avaliação' }]}
+        yAxis={[{ label: 'Ratings' }]}
+        xAxis={[{ scaleType: 'band', data: [0, 1, 2, 3, 4, 5], label: 'Rate' }]}
         series={chartData}
         grid={{ horizontal: true }}
       />

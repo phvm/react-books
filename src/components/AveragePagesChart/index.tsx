@@ -1,7 +1,7 @@
 import { PieChart } from '@mui/x-charts';
 import { CategoryRatings } from '../../types/commonTypes.ts';
 import { firstCharToUppercase } from '../../utils/stringUtils.ts';
-import { ChartContainer } from './styles.ts';
+import { ChartContainer, ChartTitle } from './styles.ts';
 import { motion } from 'framer-motion';
 
 interface AveragePagesChartProps {
@@ -36,6 +36,7 @@ export default function AveragePagesChart({ categories, ratingsData }: AveragePa
       whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}>
+      <ChartTitle>Average pages per category</ChartTitle>
       <PieChart
         series={[
           {

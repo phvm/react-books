@@ -1,5 +1,5 @@
 import { LineChart } from '@mui/x-charts';
-import { GraphContainer } from './styles.ts';
+import { ChartTitle, GraphContainer } from './styles.ts';
 import { CategoryRatings } from '../../types/commonTypes.ts';
 import { firstCharToUppercase } from '../../utils/stringUtils.ts';
 import { motion } from 'framer-motion';
@@ -42,6 +42,7 @@ export default function RatingsTimeline({ ratings, categories }: RatingsTimeline
       exit={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}>
+      <ChartTitle>Ratings per category timeline</ChartTitle>
       <LineChart
         series={chartData}
         grid={{ vertical: true, horizontal: true }}
